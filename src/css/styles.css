@@ -1,0 +1,292 @@
+@import url("./font.css");
+
+:root {
+  --bg-theme: white;
+  --font-color-theme: #212121;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  outline: 0;
+
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "NanumSquare Neo", sans-serif;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+
+  color: #212121;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 3em 0;
+
+  position: relative;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  margin-bottom: 0.3em;
+}
+
+h4 {
+  color: #646464;
+}
+
+#item-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4em;
+}
+
+#render-container .item {
+  display: flex;
+  gap: 12px;
+}
+
+#render-container .item > .text {
+  width: 200px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+#render-container .item > .text > textarea {
+  font-family: NanumSquare Neo, sans-serif;
+
+  border: none;
+  resize: none;
+  width: 100%;
+  height: 100%;
+  font-size: 1em;
+
+  background-color: var(--bg-theme);
+  color: var(--font-color-theme);
+
+  padding: 1em;
+
+  border-radius: 12px;
+}
+
+.preview {
+  width: 540px;
+  height: 540px;
+
+  transform-origin: top left;
+}
+
+.preview > canvas {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-theme);
+
+  border-radius: 12px;
+}
+
+.setting {
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 16px;
+}
+
+.setting > .setters {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.setting > .setters > .setter {
+  display: flex;
+  flex-direction: column;
+}
+
+.setting > .setters > .setter > span {
+  margin-bottom: 1em;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.setting > .remove {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+
+  margin-top: 3.5em;
+  color: rgb(235, 52, 20);
+
+  border: 2px solid rgb(235, 52, 20);
+  border-radius: 6px;
+
+  font-size: 24px;
+  padding: 0.2em 0;
+  cursor: pointer;
+
+  transition: 0.1s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.setting > .remove:hover {
+  background-color: rgb(235, 52, 20);
+  color: white;
+}
+
+#add-item {
+  margin-top: 1em;
+  margin-bottom: 12px;
+
+  width: 100%;
+  height: 140px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 48px;
+
+  cursor: pointer;
+}
+
+#download {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
+  font-size: 40px;
+
+  border-radius: 50%;
+
+  padding: 0.6em;
+
+  cursor: pointer;
+
+  background-color: #0064ff;
+  color: white;
+}
+
+#theme-picker {
+  display: flex;
+  gap: 12px;
+  margin-top: 8em;
+  margin-bottom: 2em;
+}
+
+#theme-picker > .theme {
+  width: 30px;
+  height: 30px;
+
+  cursor: pointer;
+  border-radius: 6px;
+
+  border: 2px solid #121212;
+}
+
+#theme-picker > .theme.selected {
+  border: 3px solid #0064ff;
+}
+
+#theme-picker > .theme[data-theme="light"] {
+  background-color: white;
+}
+
+#theme-picker > .theme[data-theme="dark"] {
+  background-color: #121212;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 160px;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: #d0d0d0;
+  height: 5px;
+  border-radius: 1000px;
+}
+
+input[type="range"]::-moz-range-track {
+  background: #d0d0d0;
+  height: 4px;
+  border-radius: 1000px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  margin-top: calc((16px - 4px) / 2 * -1);
+  background-color: #0064ff;
+  height: 16px;
+  width: 16px;
+
+  border-radius: 50%;
+}
+
+input[type="range"]::-moz-range-thumb {
+  border: none; /*Removes extra border that FF applies*/
+  background-color: #0064ff;
+  height: 16px;
+  width: 16px;
+
+  border-radius: 50%;
+}
+
+footer {
+  position: absolute;
+  bottom: 3em;
+  font-size: 12px;
+}
+
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+
+  opacity: 0;
+  visibility: hidden;
+}
+
+#modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+#modal-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: #000000aa;
+}
+
+#modal-content {
+  display: flex;
+  z-index: 1000;
+}
